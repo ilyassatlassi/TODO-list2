@@ -23,7 +23,7 @@ add.onclick = function () {
 //remove function
 list.addEventListener("click", (e) => {
   //delete button
-  if (e.target.className.contains("del")) {
+  if (e.target.classList.contains("del")) {
     // remove element from page
     e.target.parentElement.remove();
     // remove from local storage
@@ -72,6 +72,11 @@ function getDataFromLocal() {
     let tasks = JSON.parse(data);
     getDataFromLocal(tasks);
   }
+}
+
+function deleteFromLocal(taskId) {
+  arrayOfTitle = arrayOfTitle.filter((task) => task.id != taskId)
+  AddToLocal(arrayOfTitle)
 }
 
 showList(arrayOfTitle);
