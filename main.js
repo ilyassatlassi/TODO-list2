@@ -16,10 +16,11 @@ if (localStorage.tasks) {
 // Add function
 add.onclick = function () {
   if (title.value !== "") {
-    addTask(title.value);
+    addTask(title.value, author.value);
     title.value = "";
-  };
-}
+    author.value = "";
+  }
+};
 //remove function
 list.addEventListener("click", (e) => {
   //delete button
@@ -32,11 +33,12 @@ list.addEventListener("click", (e) => {
 });
 
 // Add task to array
-function addTask(title) {
+function addTask(title, author) {
   //task Data
   const task = {
     id: Date.now(),
     title: title,
+    author: author,
     completed: false,
   };
 
@@ -51,9 +53,14 @@ function showList(arrayOfTitle) {
   list.innerHTML = "";
   arrayOfTitle.forEach((task) => {
     let li = document.createElement("li");
+    let titleBook = document.createElement("p");
+    let authorBook = document.createElement("p");
+    titleBook.textContent = task.title;
+    authorBook.textContent = task.author;
     li.className = "task";
     li.setAttribute("data-id", task.id);
-    li.appendChild(document.createTextNode(task.title));
+    li.appendChild(titleBook);
+    li.appendChild(authorBook);
     let span = document.createElement("button");
     span.className = "del";
     span.appendChild(document.createTextNode("Remove"));
@@ -75,8 +82,8 @@ function getDataFromLocal() {
 }
 
 function deleteFromLocal(taskId) {
-  arrayOfTitle = arrayOfTitle.filter((task) => task.id != taskId)
-  AddToLocal(arrayOfTitle)
+  arrayOfTitle = arrayOfTitle.filter((task) => task.id != taskId);
+  AddToLocal(arrayOfTitle);
 }
 
 showList(arrayOfTitle);
