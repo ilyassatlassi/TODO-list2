@@ -44,7 +44,7 @@ function addTask(title, author) {
 
   arrayOfTitle.push(task);
   // show the task on the page
-  showList(arrayOfTitle);
+  showList(arrayOfTitle); 
   // Add to local storage
   AddToLocal(arrayOfTitle);
 }
