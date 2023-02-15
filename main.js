@@ -14,7 +14,7 @@ if (localStorage.tasks) {
 // call the data from the local storage
 
 // Add function
-add.onclick = function () {
+add.onclick = () => { 
   if (title.value !== "") {
     addTask(title.value, author.value);
     title.value = "";
