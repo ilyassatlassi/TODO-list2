@@ -85,7 +85,7 @@ function getDataFromLocal() {
 }
 
 function deleteFromLocal(taskId) {
-  arrayOfTitle = arrayOfTitle.filter((task) => task.id !== taskId);
+  arrayOfTitle = arrayOfTitle.filter((task) => task.id != taskId);
   AddToLocal(arrayOfTitle);
 }
 
