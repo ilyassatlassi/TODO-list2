@@ -9,11 +9,22 @@
   </head>
   <body>
     <h1>Awesome-book</h1>
-    <ul id="listTodo"></ul>
+    <div class="book-display">
+    
+   
+      <div class="book" id="book">
+        
+      </div>
+   
+  </div>
+    <hr class="line">
     <div class="form" id="form">
-      <input type="text" placeholder="title" class="title" id="title" />
-      <input type="text" placeholder="author" class="author" id="author" />
-      <input type="submit" value="Add" class="add" id="add" />
+      <h1>Add a new book</h1>
+      <form id="book-form">
+      <input type="text" placeholder="title" class="title" id="title" /><br>
+      <input type="text" placeholder="author" class="author" id="author" /><br>
+      <button class="add-btn" type="submit">Add</button>
+    </form>
     </div>
     <script src="main.js"></script>
   </body>

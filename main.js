@@ -1,92 +1,119 @@
-const title = document.getElementById('title');
-const author = document.getElementById('author');
-const add = document.getElementById('add');
-const list = document.getElementById('listTodo');
+/* eslint max-classes-per-file: ["error", 8] */
+
+class Book {
+  constructor(title, author) {
+    this.title = title;
+    this.author = author;
+  }
+}
 
 // Empty array to add data
-let arrayOfTitle = [];
-// check if there is data in local storage
+class methods {
+  static getbooks() {
+    let arrayOfbook = [];
+    // check if there is data in local storage
 
-if (localStorage.tasks) {
-  arrayOfTitle = JSON.parse(localStorage.getItem('tasks'));
+    if (localStorage.getItem('arrayOfbook')) {
+      arrayOfbook = JSON.parse(localStorage.getItem('arrayOfbook'));
+    } else {
+      arrayOfbook = [];
+    }
+    return arrayOfbook;
+  }
+
+  // Add function
+  static addBook(book) {
+    const newBook = methods.getBooks();
+    newBook.push(book);
+    localStorage.setItem('newBook', JSON.stringify(newBook));
+  }
+
+  // remove function
+  static removeBook(author) {
+    const books = methods.getBooks();
+
+    books.forEach((book, index) => {
+      if (book.author === author) {
+        books.splice(index, 1);
+      }
+    });
+
+    localStorage.setItem('books', JSON.stringify(books));
+  }
 }
-// call the data from the local storage
 
-// Add function
-add.onclick = () => {
-  if (title.value !== '') {
-    /* eslint-disable */
-    addTask(title.value, author.value);
-    title.value = '';
-    author.value = '';
+class UI {
+  static displayBooks() {
+    const books = methods.getBooks();
+
+    books.forEach((book) => UI.addBookToList(book));
   }
-};
-// remove function
-list.addEventListener('click', (e) => {
-  // delete button
-  if (e.target.classList.contains('del')) {
-    // remove element from page
-    e.target.parentElement.remove();
-    // remove from local storage
-    /* eslint-disable */
-    deleteFromLocal(e.target.parentElement.getAttribute('data-id'));
+
+  static addBookToList(book) {
+    const list = document.querySelector('.book');
+
+    const row = document.createElement('tr');
+
+    row.innerHTML = `
+        <div class="book-details">
+        
+        <p>"${book.title}"</p>
+        <p>by</p>
+        <p>${book.author}</p>
+       
+       
+        <button><a href="#" class="button">remove</a></button>
+        
+        </div>
+        `;
+
+    list.appendChild(row);
   }
+
+  static deleteBook(el) {
+    if (el.classList.contains('button')) {
+      el.parentElement.parentElement.remove();
+    }
+  }
+
+  static clearFields() {
+    document.querySelector('.title').value = '';
+    document.querySelector('.author').value = '';
+  }
+}
+
+// event display books
+
+document.addEventListener('DOMContentLoaded', UI.displayBooks);
+
+// event add a book
+
+document.querySelector('#book-form').addEventListener('submit', (e) => {
+  // prevent actual submit
+  e.preventDefault();
+  // get form values
+  const title = document.querySelector('.title').value;
+  const author = document.querySelector('.author').value;
+
+  // validate
+
+  // instatiate book
+  const book = new Book(title, author);
+
+  // add to ui
+
+  UI.addBookToList(book);
+
+  // add book to methods
+  methods.addBook(book);
+
+  // clear fields.
+  UI.clearFields();
 });
 
-// Add task to array
-function addTask(title, author) {
-  // task Data
-  const task = {
-    id: Date.now(),
-    title,
-    author,
-    completed: false,
-  };
-
-  arrayOfTitle.push(task);
-  // show the task on the page
-  /* eslint-disable */
-  showList(arrayOfTitle);
-  // Add to local storage
-  /* eslint-disable */
-  AddToLocal(arrayOfTitle);
-}
-
-function showList(arrayOfTitle) {
-  list.innerHTML = '';
-  arrayOfTitle.forEach((task) => {
-    const li = document.createElement('li');
-    const titleBook = document.createElement('p');
-    const authorBook = document.createElement('p');
-    titleBook.textContent = task.title;
-    authorBook.textContent = task.author;
-    li.className = 'task';
-    li.setAttribute('data-id', task.id);
-    li.appendChild(titleBook);
-    li.appendChild(authorBook);
-    const span = document.createElement('button');
-    span.className = 'del';
-    span.appendChild(document.createTextNode('Remove'));
-    li.appendChild(span);
-    list.appendChild(li);
-  });
-}
-
-function AddToLocal(arrayOfTitle) {
-  window.localStorage.setItem('tasks', JSON.stringify(arrayOfTitle));
-}
-/* eslint-disable */
-function getDataFromLocal() {
-  const data = Window.localStorage.getItem('tasks');
-  if (data) {
-    const tasks = JSON.parse(data);
-    getDataFromLocal(tasks);
-  }
-}
-
-function deleteFromLocal(taskId) {
-  arrayOfTitle = arrayOfTitle.filter((task) => task.id != taskId);
-  AddToLocal(arrayOfTitle);
-}
-
-showList(arrayOfTitle);
+// event: Remove a Book
+document.querySelector('.book').addEventListener('click', (e) => {
+  UI.deleteBook(e.target);
+  // Remove book from methods
+  methods.removeBook(e.target.parentElement.previousElementSibling.textContent);
+});

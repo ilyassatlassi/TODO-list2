@@ -1,18 +1,72 @@
+* {
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.book-display {
+  border: 2px solid black;
+}
+
+.book-display h1 {
+  font-weight: 600;
+  font-family: sans-serif;
+}
+
+.book-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+}
+
+.book-details button {
+  padding: 0;
+  width: 70px;
+  height: 25px;
+  text-align: center;
+}
+
+.book {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 18px;
+  padding: 10px 60px 10px 60px;
+}
+
+.book-naming {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.line {
+  width: 150px;
+  margin-top: 45px;
+  color: black;
+  font-weight: bold;
+}
+
 .form {
   display: flex;
   flex-direction: column;
-  width: 20%;
-  gap: 5px;
+  align-items: flex-end;
+  justify-content: center;
 }
 
-.task {
-  display: flex;
-  flex-direction: column;
-  width: 20%;
-  gap: 5px;
+.form button {
+  align-items: center;
+  margin-top: 10px;
 }
 
-li.task {
-  display: flex;
-  flex-direction: column;
+#book-form input {
+  margin-top: 7px;
+  width: 215px;
 }
