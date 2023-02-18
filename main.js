@@ -46,21 +46,22 @@ showList = (title, author) =>{
 
 }
 
-// if (localStorage.tasks) {
-//   arrayOfTitle = JSON.parse(localStorage.getItem('tasks'));
-// }
+
 // call the data from the local storage
 
 const listBook = new ListBooks();
-
+if (localStorage.tasks) {
+  listBook.arrayOfTitle = JSON.parse(localStorage.getItem('tasks'));
+}
 // Add function
 add.onclick = () => {
   if (title.value !== '') {
     /* eslint-disable */
     
     listBook.addTask(title.value, author.value);
-
-    // listBook.showList(title.value, author.value)
+    AddToLocal(listBook.arrayOfTitle)
+    
+    listBook.showList(title.value, author.value)
 
     title.value = '';
     author.value = '';
@@ -68,6 +69,7 @@ add.onclick = () => {
 };
 console.log(listBook.addTask)
 console.log(listBook.arrayOfTitle)
+console.log(AddToLocal(listBook.arrayOfTitle))
 // remove function
 list.addEventListener('click', (e) => {
   // delete button
@@ -134,14 +136,33 @@ list.addEventListener('click', (e) => {
 // AddToLocal(listBook.arrayOfTitle);
 // console.log(AddToLocal(listBook.arrayOfTitle))
 // listBook.showList(title.value, author.value);
-window.addEventListener('beforeunload', () => {
-  localStorage.setItem('book', JSON.stringify(listBook.arrayOfTitle));
-});
+// window.addEventListener('beforeunload', () => {
+//   localStorage.setItem('book', JSON.stringify(listBook.arrayOfTitle));
+// });
 
-if (window.localStorage.getItem('book') !== 'undefined') {
-  const data = JSON.parse(window.localStorage.getItem('book'));
+
+function AddToLocal(arrayOfTitle) {
+  window.localStorage.setItem('tasks', JSON.stringify(arrayOfTitle));
+}
+/* eslint-disable */
+function getDataFromLocal() {
+  const data = Window.localStorage.getItem('tasks');
+  if (data) {
+    const tasks = JSON.parse(data);
+    getDataFromLocal(tasks);
+  }
+}
+
+if (window.localStorage.getItem('tasks') !== 'undefined') {
+  const data = JSON.parse(window.localStorage.getItem('tasks'));
   data.forEach((e) => {
     listBook.showList(e.title, e.author);
   });
 console.log(data)
 }
+// function deleteFromLocal(taskId) {
+//   arrayOfTitle = arrayOfTitle.filter((task) => task.id != taskId);
+//   AddToLocal(arrayOfTitle);
+// }
+
+// listBook.showList(listBook.arrayOfTitle)
