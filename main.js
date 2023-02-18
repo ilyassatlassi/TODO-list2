@@ -72,8 +72,6 @@ add.onclick = () => {
     author.value = '';
   }
 };
-console.log(listBook.addTask)
-console.log(listBook.arrayOfTitle)
 
 // remove function
 list.addEventListener('click', (e) => {
