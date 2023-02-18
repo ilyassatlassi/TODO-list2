@@ -1,8 +1,9 @@
+/* eslint-disable max-classes-per-file */
 const title = document.getElementById('title');
 const author = document.getElementById('author');
 const add = document.getElementById('add');
 const list = document.getElementById('listTodo');
-let currendID = Date.now();
+const currendID = Date.now();
 class Books {
   constructor(title, author = null, id) {
     this.id = id;
@@ -16,17 +17,18 @@ class ListBooks {
     this.arrayOfTitle = [];
   }
 
-// Add task to array
+  // Add task to array
  addTask = (title, author) => {
-  const book = new Books(title, author, currendID);
-  this.arrayOfTitle.push(book);
+   const book = new Books(title, author, currendID);
+   this.arrayOfTitle.push(book);
  }
 
   deleteFromLocal = (taskId) => {
-  this.arrayOfTitle = this.arrayOfTitle.filter((task) => task.id != taskId);
-}
+    /* eslint-disable eqeqeq */
+    this.arrayOfTitle = this.arrayOfTitle.filter((task) => task.id != taskId);
+  }
 
-showList = (pa) =>{
+showList = (pa) => {
   list.innerHTML = '';
   pa.forEach((task) => {
     const li = document.createElement('li');
@@ -42,9 +44,7 @@ showList = (pa) =>{
     list.appendChild(li);
   });
 }
-
 }
-
 
 // call the data from the local storage
 
@@ -55,8 +55,8 @@ if (localStorage.tasks) {
 
 function AddToLocal(arrayOfTitle) {
   window.addEventListener('beforeunload', () => {
-      localStorage.setItem('tasks', JSON.stringify(arrayOfTitle));
-    });
+    localStorage.setItem('tasks', JSON.stringify(arrayOfTitle));
+  });
 }
 
 // Add function
