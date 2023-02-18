@@ -18,8 +18,7 @@ class ListBooks {
  }
 
   deleteFromLocal = (taskId) => {
-    /* eslint-disable */
-    this.arrayOfTitle = this.arrayOfTitle.filter((task) => task.id != taskId);
+    this.arrayOfTitle = this.arrayOfTitle.filter((task) => task.id /* eslint-disable */!= taskId);
   }
 
 showList = (pa) => {
@@ -56,7 +55,6 @@ function AddToLocal(arrayOfTitle) {
 // Add function
 add.onclick = () => {
   if (title.value !== '') {
-    /* eslint-disable */
     
     listBook.addTask(title.value, author.value);
     AddToLocal(listBook.arrayOfTitle)
@@ -74,7 +72,6 @@ list.addEventListener('click', (e) => {
     // remove element from page
     e.target.parentElement.remove();
     // remove from local storage
-    /* eslint-disable */
     listBook.deleteFromLocal(e.target.parentElement.getAttribute('data-id'));
     AddToLocal(listBook.arrayOfTitle)
   }
