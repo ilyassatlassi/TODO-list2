@@ -25,7 +25,7 @@
 
 # 📖 [Awesome book] <a name="about-project"></a>
 
-> In this project we Used JavaScript objects.
+> In this project we Used JavaScript classes.
 
 **[Awesome books]**
 
