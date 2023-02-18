@@ -1,8 +1,8 @@
 /* eslint-disable max-classes-per-file */
 const title = document.getElementById('title');
 const author = document.getElementById('author');
-const add = document.getElementById('add');
-const list = document.getElementById('listTodo');
+const add = document.getElementById('buttonAdd');
+const list = document.getElementById('box');
 let currendID = Date.now();
 class Books {
   constructor(title, author = null, id) {
