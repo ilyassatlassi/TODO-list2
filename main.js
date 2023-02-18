@@ -3,7 +3,7 @@ const title = document.getElementById('title');
 const author = document.getElementById('author');
 const add = document.getElementById('add');
 const list = document.getElementById('listTodo');
-const currendID = Date.now();
+let currendID = Date.now();
 class Books {
   constructor(title, author = null, id) {
     this.id = id;
@@ -66,6 +66,7 @@ add.onclick = () => {
     
     listBook.addTask(title.value, author.value);
     AddToLocal(listBook.arrayOfTitle)
+    currendID +=1;
     listBook.showList(listBook.arrayOfTitle)
     title.value = '';
     author.value = '';
