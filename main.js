@@ -26,13 +26,13 @@ class ListBooks {
   this.arrayOfTitle = this.arrayOfTitle.filter((task) => task.id != taskId);
 }
 
-showList = (title, author) =>{
+showList = (pa) =>{
   let itemId = currendID;
   list.innerHTML = '';
-  this.arrayOfTitle.forEach((task) => {
+  pa.forEach((task) => {
     const li = document.createElement('li');
     const titleBook = document.createElement('p');
-    titleBook.textContent = `"${title}" by ${author}`;
+    titleBook.textContent = `"${task.title}" by ${task.author}`;
     li.className = 'task';
     li.setAttribute('data-id', itemId);
     li.appendChild(titleBook);
@@ -41,6 +41,7 @@ showList = (title, author) =>{
     span.appendChild(document.createTextNode('Remove'));
     li.appendChild(span);
     list.appendChild(li);
+    currendID += 1;
   });
 }
 
@@ -79,6 +80,7 @@ list.addEventListener('click', (e) => {
     // remove from local storage
     /* eslint-disable */
     listBook.deleteFromLocal(e.target.parentElement.getAttribute('data-id'));
+    AddToLocal(listBook.arrayOfTitle)
   }
 });
 
@@ -153,16 +155,16 @@ function getDataFromLocal() {
   }
 }
 
-if (window.localStorage.getItem('tasks') !== 'undefined') {
-  const data = JSON.parse(window.localStorage.getItem('tasks'));
-  data.forEach((e) => {
-    listBook.showList(e.title, e.author);
-  });
-console.log(data)
-}
+// if (window.localStorage.getItem('tasks') !== 'undefined') {
+//   const data = JSON.parse(window.localStorage.getItem('tasks'));
+//   data.forEach((e) => {
+//     listBook.showList(e.title, e.author);
+//   });
+// console.log(data)
+// }
 // function deleteFromLocal(taskId) {
 //   arrayOfTitle = arrayOfTitle.filter((task) => task.id != taskId);
 //   AddToLocal(arrayOfTitle);
 // }
 
-// listBook.showList(listBook.arrayOfTitle)
+listBook.showList(listBook.arrayOfTitle)
