@@ -5,7 +5,6 @@ const author = document.getElementById('author');
 const add = document.getElementById('add');
 const list = document.getElementById('listTodo');
 
-
 let currendID = Date.now();
 class ListBooks {
   constructor() {
