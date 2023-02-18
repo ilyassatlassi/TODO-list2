@@ -1,16 +1,10 @@
-/* eslint-disable max-classes-per-file */
+import Books from './modules/booksClass.js';
+
 const title = document.getElementById('title');
 const author = document.getElementById('author');
 const add = document.getElementById('buttonAdd');
 const list = document.getElementById('box');
 let currendID = Date.now();
-class Books {
-  constructor(title, author = null, id) {
-    this.id = id;
-    this.title = title;
-    this.author = author;
-  }
-}
 
 class ListBooks {
   constructor() {
@@ -24,7 +18,7 @@ class ListBooks {
  }
 
   deleteFromLocal = (taskId) => {
-    /* eslint-disable eqeqeq */
+    /* eslint-disable */
     this.arrayOfTitle = this.arrayOfTitle.filter((task) => task.id != taskId);
   }
 
