@@ -1,18 +1,12 @@
-/* eslint-disable max-classes-per-file */
+import Books from './modules/booksClass.js';
+
 const title = document.getElementById('title');
 const author = document.getElementById('author');
 const add = document.getElementById('add');
 const list = document.getElementById('listTodo');
-// import Books from './modules/booksClass';
+
 
 let currendID = Date.now();
-class Books {
-  constructor(title, author = null, id) {
-    this.id = id;
-    this.title = title;
-    this.author = author;
-  }
-}
 class ListBooks {
   constructor() {
     this.arrayOfTitle = [];
