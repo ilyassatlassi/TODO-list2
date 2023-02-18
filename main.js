@@ -3,6 +3,8 @@ const title = document.getElementById('title');
 const author = document.getElementById('author');
 const add = document.getElementById('add');
 const list = document.getElementById('listTodo');
+// import Books from './modules/booksClass';
+
 let currendID = Date.now();
 class Books {
   constructor(title, author = null, id) {
@@ -11,7 +13,6 @@ class Books {
     this.author = author;
   }
 }
-
 class ListBooks {
   constructor() {
     this.arrayOfTitle = [];

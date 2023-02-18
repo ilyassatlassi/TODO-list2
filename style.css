@@ -32,16 +32,9 @@ section {
 }
 
 .listTodo {
-  width: 100%;
+  width: 70%;
   border: 5px solid #000;
   padding: 0;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  row-gap: 12px;
-  align-items: flex-end;
 }
 
 hr {
@@ -100,4 +93,9 @@ nav h1 {
 
 .hidden {
   display: none;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
 }
