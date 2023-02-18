@@ -32,13 +32,10 @@ showList = (title, author) =>{
   this.arrayOfTitle.forEach((task) => {
     const li = document.createElement('li');
     const titleBook = document.createElement('p');
-    const authorBook = document.createElement('p');
-    titleBook.textContent = task.title;
-    authorBook.textContent = task.author;
+    titleBook.textContent = `"${title}" by ${author}`;
     li.className = 'task';
     li.setAttribute('data-id', itemId);
     li.appendChild(titleBook);
-    li.appendChild(authorBook);
     const span = document.createElement('button');
     span.className = 'del';
     span.appendChild(document.createTextNode('Remove'));
@@ -63,7 +60,7 @@ add.onclick = () => {
     
     listBook.addTask(title.value, author.value);
 
-    listBook.showList(title.value, author.value)
+    // listBook.showList(title.value, author.value)
 
     title.value = '';
     author.value = '';
@@ -143,8 +140,8 @@ window.addEventListener('beforeunload', () => {
 
 if (window.localStorage.getItem('book') !== 'undefined') {
   const data = JSON.parse(window.localStorage.getItem('book'));
-  data.forEach((arrayOfTitle) => {
-    listBook.showList(arrayOfTitle.title, arrayOfTitle.author);
+  data.forEach((e) => {
+    listBook.showList(e.title, e.author);
   });
 console.log(data)
 }
