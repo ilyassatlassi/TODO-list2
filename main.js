@@ -41,8 +41,7 @@ showList = (pa) =>{
     span.appendChild(document.createTextNode('Remove'));
     li.appendChild(span);
     list.appendChild(li);
-    currendID += 1;
-  });
+  });currendID += 1;
 }
 
 }
@@ -54,6 +53,13 @@ const listBook = new ListBooks();
 if (localStorage.tasks) {
   listBook.arrayOfTitle = JSON.parse(localStorage.getItem('tasks'));
 }
+
+function AddToLocal(arrayOfTitle) {
+  window.addEventListener('beforeunload', () => {
+      localStorage.setItem('tasks', JSON.stringify(arrayOfTitle));
+    });
+}
+
 // Add function
 add.onclick = () => {
   if (title.value !== '') {
@@ -61,16 +67,14 @@ add.onclick = () => {
     
     listBook.addTask(title.value, author.value);
     AddToLocal(listBook.arrayOfTitle)
-    
-    listBook.showList(title.value, author.value)
-
+    listBook.showList(listBook.arrayOfTitle)
     title.value = '';
     author.value = '';
   }
 };
 console.log(listBook.addTask)
 console.log(listBook.arrayOfTitle)
-console.log(AddToLocal(listBook.arrayOfTitle))
+
 // remove function
 list.addEventListener('click', (e) => {
   // delete button
@@ -83,7 +87,7 @@ list.addEventListener('click', (e) => {
     AddToLocal(listBook.arrayOfTitle)
   }
 });
-
+listBook.showList(listBook.arrayOfTitle)
 // Add task to array
 // function addTask(title, author) {
 //   // task Data
@@ -143,17 +147,19 @@ list.addEventListener('click', (e) => {
 // });
 
 
-function AddToLocal(arrayOfTitle) {
-  window.localStorage.setItem('tasks', JSON.stringify(arrayOfTitle));
-}
+// function AddToLocal(arrayOfTitle) {
+//   window.addEventListener('beforeunload', () => {
+//       localStorage.setItem('tasks', JSON.stringify(arrayOfTitle));
+//     });
+// }
 /* eslint-disable */
-function getDataFromLocal() {
-  const data = Window.localStorage.getItem('tasks');
-  if (data) {
-    const tasks = JSON.parse(data);
-    getDataFromLocal(tasks);
-  }
-}
+// function getDataFromLocal() {
+//   const data = Window.localStorage.getItem('tasks');
+//   if (data) {
+//     const tasks = JSON.parse(data);
+//     getDataFromLocal(tasks);
+//   }
+// }
 
 // if (window.localStorage.getItem('tasks') !== 'undefined') {
 //   const data = JSON.parse(window.localStorage.getItem('tasks'));
@@ -167,4 +173,4 @@ function getDataFromLocal() {
 //   AddToLocal(arrayOfTitle);
 // }
 
-listBook.showList(listBook.arrayOfTitle)
+
