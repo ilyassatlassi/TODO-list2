@@ -1,0 +1,101 @@
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+section {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navbar li {
+  list-style: none;
+  padding: 12px;
+  font-size: 20px;
+}
+
+.listTodo li {
+  width: 100%;
+  box-sizing: border-box;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 12px 0 12px;
+}
+
+.listTodo {
+  width: 70%;
+  border: 5px solid #000;
+  padding: 0;
+}
+
+hr {
+  width: 50px;
+  border: 1px solid black;
+}
+
+.listTodo li:nth-child(odd) {
+  background-color: #dddd;
+}
+
+header {
+  width: 90%;
+  margin-top: 12px;
+  border: 2px solid black;
+}
+
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav h1 {
+  font-size: 30px;
+  padding-left: 1%;
+  margin: 0;
+}
+
+.navbar {
+  display: flex;
+}
+
+.contact-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 5px 30px;
+}
+
+.contact-section-heading {
+  text-align: center;
+}
+
+.footer {
+  position: absolute;
+  text-align: center;
+  background-color: beige;
+  padding: 50px 20px;
+  width: 100%;
+  bottom: 1px;
+}
+
+.hidden {
+  display: none;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
