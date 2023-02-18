@@ -2,7 +2,7 @@ const title = document.getElementById('title');
 const author = document.getElementById('author');
 const add = document.getElementById('add');
 const list = document.getElementById('listTodo');
-let currendID = 0;
+let currendID = Date.now();
 class Books {
   constructor(title, author = null, id) {
     this.id = id;
@@ -27,21 +27,20 @@ class ListBooks {
 }
 
 showList = (pa) =>{
-  let itemId = currendID;
   list.innerHTML = '';
   pa.forEach((task) => {
     const li = document.createElement('li');
     const titleBook = document.createElement('p');
     titleBook.textContent = `"${task.title}" by ${task.author}`;
     li.className = 'task';
-    li.setAttribute('data-id', itemId);
+    li.setAttribute('data-id', task.id);
     li.appendChild(titleBook);
     const span = document.createElement('button');
     span.className = 'del';
     span.appendChild(document.createTextNode('Remove'));
     li.appendChild(span);
     list.appendChild(li);
-  });currendID += 1;
+  });
 }
 
 }
