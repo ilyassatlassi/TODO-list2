@@ -38,6 +38,5 @@ class ListBooks {
   }
 
 export {
-  currendID,
   ListBooks
 }
