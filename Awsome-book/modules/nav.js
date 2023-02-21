@@ -1,4 +1,4 @@
-import { DateTime } from '../modules/luxon.js';
+import { DateTime } from './luxon.js';
 
 const List = document.getElementById('List');
 const AddNew = document.getElementById('AddNew');

@@ -1,5 +1,4 @@
-import {ListBooks} from './modules/ListBooks.js';
-
+import { ListBooks } from './modules/ListBooks.js';
 
 const title = document.getElementById('title');
 const author = document.getElementById('author');
@@ -20,10 +19,9 @@ function AddToLocal(arrayOfTitle) {
 // Add function
 add.onclick = () => {
   if (title.value !== '') {
-    
     listBook.addTask(title.value, author.value);
     AddToLocal(listBook.arrayOfTitle);
-    listBook.showList(listBook.arrayOfTitle)
+    listBook.showList(listBook.arrayOfTitle);
     title.value = '';
     author.value = '';
   }
@@ -37,7 +35,7 @@ list.addEventListener('click', (e) => {
     e.target.parentElement.remove();
     // remove from local storage
     listBook.deleteFromLocal(e.target.parentElement.getAttribute('data-id'));
-    AddToLocal(listBook.arrayOfTitle)
+    AddToLocal(listBook.arrayOfTitle);
   }
 });
-listBook.showList(listBook.arrayOfTitle)
+listBook.showList(listBook.arrayOfTitle);

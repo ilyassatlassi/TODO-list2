@@ -4,17 +4,17 @@ let currendID = Date.now();
 
 const list = document.getElementById('box');
 class ListBooks {
-    constructor() {
-      this.arrayOfTitle = [];
-    }
-  
-    // Add task to array
+  constructor() {
+    this.arrayOfTitle = [];
+  }
+
+  // Add task to array
    addTask = (title, author) => {
      const book = new Books(title, author, currendID);
      this.arrayOfTitle.push(book);
      currendID += 1;
    }
-  
+
     deleteFromLocal = (taskId) => {
       this.arrayOfTitle = this.arrayOfTitle.filter((task) => task.id /* eslint-disable */!= taskId);
     }
